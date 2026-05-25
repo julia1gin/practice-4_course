@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Раздаточный материал — ВКР</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --red-light: #F9EBEA;
+    --ink: #1A1A2E;
+    --ink-mid: #3D3D5C;
+    --ink-light: #7F7F9A;
+    --line: #E8E0E0;
+    --bg: #FDFCFC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #e8e0d8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    padding: 14mm 16mm 12mm;
+    position: relative;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  }
+
+  /* Красная вертикальная полоса слева */
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  }
+
+  /* Шапка */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--line);
+  }
+
+  .header-left {
+    flex: 1;
+  }
+
+  .uni {
+    font-size: 7.5pt;
+    color: var(--ink-light);
+    font-weight: 400;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    max-width: 130mm;
+  }
+
+  h1 span {
+    color: var(--red);
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 7.5pt;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    flex-shrink: 0;
+    margin-left: 4mm;
+  }
+
+  .header-right strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 8pt;
+  }
+
+  /* Метка года */
+  .year-badge {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 7pt;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+
+  /* Сетка основного контента: 2 колонки */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-bottom: 7px;
+  }
+
+  .grid-wide {
+    grid-column: 1 / -1;
+  }
+
+  /* Карточка */
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 9px 10px 8px;
+    position: relative;
+  }
+
+  .card-accent {
+    border-left: 3px solid var(--red);
+  }
+
+  .card-dark {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: white;
+  }
+
+  .card-red {
+    background: var(--red);
+    border-color: var(--red);
+    color: white;
+  }
+
+  .card-light {
+    background: var(--red-light);
+    border-color: #F1C0BB;
+  }
+
+  .card-title {
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+
+  .card-dark .card-title,
+  .card-red .card-title {
+    color: rgba(255,255,255,0.65);
+  }
+
+  .card-body {
+    font-size: 8.5pt;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .card-dark .card-body,
+  .card-red .card-body {
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Список */
+  ul.clean {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.clean li {
+    font-size: 8.5pt;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 2px;
+  }
+
+  ul.clean li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  /* Задачи нумерованные */
+  ol.tasks {
+    list-style: none;
+    counter-reset: task;
+    padding: 0;
+  }
+
+  ol.tasks li {
+    counter-increment: task;
+    font-size: 8pt;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+
+  ol.tasks li::before {
+    content: counter(task);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--red);
+    color: white;
+    border-radius: 2px;
+    font-size: 6.5pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /* Таблица сравнения */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.5pt;
+  }
+
+  .compare-table th {
+    background: var(--ink);
+    color: white;
+    padding: 4px 6px;
+    font-weight: 600;
+    text-align: left;
+    font-size: 7pt;
+  }
+
+  .compare-table td {
+    padding: 3.5px 6px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-mid);
+    vertical-align: middle;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: #FAF8F8; }
+
+  .tag {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 600;
+    padding: 1.5px 5px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .tag-no { background: #FADBD8; color: #C0392B; }
+  .tag-yes { background: #D5F5E3; color: #1E8449; }
+  .tag-part { background: #FEF9E7; color: #B7950B; }
+
+  /* Метрики результата */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .metric {
+    text-align: center;
+    padding: 6px 4px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+  }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    display: block;
+  }
+
+  .metric-label {
+    font-size: 6.5pt;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.3;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Технологии */
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .tech-chip {
+    background: var(--ink);
+    color: white;
+    font-size: 7pt;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.03em;
+  }
+
+  .tech-chip.light {
+    background: var(--red-light);
+    color: var(--red-dark);
+  }
+
+  /* Этапы тестирования */
+  .stages {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  .stage {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 6px 7px;
+    text-align: center;
+    position: relative;
+  }
+
+  .stage-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    display: block;
+  }
+
+  .stage-title {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+    margin: 2px 0;
+  }
+
+  .stage-desc {
+    font-size: 7pt;
+    color: var(--ink-light);
+    line-height: 1.35;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    color: var(--red);
+    font-size: 12pt;
+    flex-shrink: 0;
+    padding-bottom: 6px;
+  }
+
+  /* Поля протокола */
+  .fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .field-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 8pt;
+    color: var(--ink-mid);
+  }
+
+  .field-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Футер */
+  footer {
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 7pt;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  .footer-right {
+    font-size: 7pt;
+    color: var(--ink-light);
+    text-align: right;
+  }
+
+  .red-text { color: var(--red); font-weight: 600; }
+
+  /* Section label */
+  .section-label {
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    font-weight: 600;
+    margin-bottom: 4px;
+    margin-top: 7px;
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ШАПКА -->
+  <header>
+    <div class="header-left">
+      <div class="uni">РГПУ им. А.И. Герцена · Направление 09.03.01 · Технологии разработки ПО</div>
+      <h1>Автоматизация процесса формирования<br>отчётов о тестировании сборок ПО<br>в среде <span>Tooster</span></h1>
+    </div>
+    <div class="header-right">
+      <strong>Гиниятуллина Юлия Сергеевна</strong>
+      студент 4 курса, очная форма
+      <br>
+      Руководитель: <strong style="display:inline; font-size:8pt;">Жуков Н.Н.</strong>,<br>
+      к. физ.-мат. н., доцент ИТЭО<br>
+      <span style="color:var(--ink-light);">Санкт-Петербург · 2026</span>
+    </div>
+  </header>
+
+  <!-- РЯД 1: Актуальность + Цель -->
+  <div class="section-label">Постановка задачи</div>
+  <div class="grid">
+    <div class="card card-accent">
+      <div class="card-title">Проблема</div>
+      <div class="card-body">
+        В среде Tooster (компания РЕД СОФТ) результаты тестирования передавались в виде неформатированного текста через корпоративный чат. Такой формат не пригоден для официальной документации и взаимодействия с руководством и заказчиками.
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-title">Цель работы</div>
+      <div class="card-body">
+        Разработка и интеграция модуля автоматизированного формирования протоколов тестирования сборок ПО непосредственно в среде Tooster с экспортом в форматы <strong>DOCX</strong> и <strong>PDF</strong>.
+      </div>
+    </div>
+  </div>
+
+  <!-- РЯД 2: Задачи -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">Задачи исследования</div>
+      <ol class="tasks">
+        <li>Изучить предметную область — современные подходы к тестированию ПО и роль отчётности в обеспечении качества</li>
+        <li>Проанализировать существующие подходы к автоматизации формирования отчётов и сформулировать требования к автоматизированной системе отчётности</li>
+        <li>Изучить архитектуру и функциональность среды Tooster и разработать унифицированный шаблон отчёта</li>
+        <li>Реализовать программный модуль системы автоматизации отчётов о сборках ПО в среде Tooster</li>
+      </ol>
+    </div>
+
+    <!-- Сравнение инструментов -->
+    <div class="card">
+      <div class="card-title">Анализ существующих решений</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Инструмент</th>
+            <th>Ручн. тесты</th>
+            <th>DOCX/PDF</th>
+            <th>Отечеств.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Allure Report</td>
+            <td><span class="tag tag-no">Нет</span></td>
+            <td><span class="tag tag-no">Нет</span></td>
+            <td><span class="tag tag-no">Нет</span></td>
+          </tr>
+          <tr>
+            <td>Azure DevOps</td>
+            <td><span class="tag tag-yes">Да</span></td>
+            <td><span class="tag tag-part">Частично</span></td>
+            <td><span class="tag tag-no">Нет</span></td>
+          </tr>
+          <tr>
+            <td>Test IT</td>
+            <td><span class="tag tag-yes">Да</span></td>
+            <td><span class="tag tag-no">Нет</span></td>
+            <td><span class="tag tag-yes">Да</span></td>
+          </tr>
+          <tr>
+            <td><strong>Разработанный модуль</strong></td>
+            <td><span class="tag tag-yes">Да</span></td>
+            <td><span class="tag tag-yes">Да</span></td>
+            <td><span class="tag tag-yes">Да</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- РЯД 3: Требования + Технологии -->
+  <div class="section-label">Реализация</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">Состав протокола тестирования</div>
+      <div class="fields-grid">
+        <div class="field-item"><div class="field-dot"></div>Продукт и версия</div>
+        <div class="field-item"><div class="field-dot"></div>Тестовый набор</div>
+        <div class="field-item"><div class="field-dot"></div>Сроки тестирования</div>
+        <div class="field-item"><div class="field-dot"></div>Список окружений</div>
+        <div class="field-item"><div class="field-dot"></div>Статистика тест-кейсов</div>
+        <div class="field-item"><div class="field-dot"></div>Реестр дефектов</div>
+        <div class="field-item"><div class="field-dot"></div>Заключение о релизе</div>
+        <div class="field-item"><div class="field-dot"></div>Логотип РЕД СОФТ</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Технологический стек</div>
+      <div style="font-size:7.5pt; color:var(--ink-light); margin-bottom:3px;">Фронтенд</div>
+      <div class="tech-row">
+        <span class="tech-chip">Vue.js 3</span>
+        <span class="tech-chip">Composition API</span>
+        <span class="tech-chip">SCSS</span>
+        <span class="tech-chip">SFC (.vue)</span>
+      </div>
+      <div style="font-size:7.5pt; color:var(--ink-light); margin: 6px 0 3px;">Бэкенд и генерация</div>
+      <div class="tech-row">
+        <span class="tech-chip">Python</span>
+        <span class="tech-chip">REST API</span>
+        <span class="tech-chip light">DOCX</span>
+        <span class="tech-chip light">PDF</span>
+      </div>
+      <div style="font-size:7.5pt; color:var(--ink-light); margin: 6px 0 3px;">Совместимость</div>
+      <div class="tech-row">
+        <span class="tech-chip light">РЕД ОС</span>
+        <span class="tech-chip light">LibreOffice</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЯД 4: Этапы тестирования -->
+  <div class="grid">
+    <div class="card grid-wide">
+      <div class="card-title">Этапы тестирования и внедрения</div>
+      <div class="stages">
+        <div class="stage">
+          <span class="stage-num">1</span>
+          <span class="stage-title">Ручное тестирование</span>
+          <span class="stage-desc">Проверка на реальных данных Tooster автором разработки</span>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <span class="stage-num">2</span>
+          <span class="stage-title">Пользовательское тестирование</span>
+          <span class="stage-desc">Ограниченная группа QA-инженеров РЕД СОФТ</span>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <span class="stage-num">3</span>
+          <span class="stage-title">Промышленная эксплуатация</span>
+          <span class="stage-desc">Доступ для всех команд тестирования компании</span>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <span class="stage-num">✓</span>
+          <span class="stage-title">Акт о внедрении</span>
+          <span class="stage-desc">Подписан представителями РЕД СОФТ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЯД 5: Результаты -->
+  <div class="section-label">Результаты</div>
+  <div class="grid">
+    <div class="card card-dark">
+      <div class="card-title">Практические результаты</div>
+      <div class="metrics">
+        <div class="metric">
+          <span class="metric-num">2×</span>
+          <span class="metric-label">сокращение времени формирования отчёта</span>
+        </div>
+        <div class="metric">
+          <span class="metric-num">↑</span>
+          <span class="metric-label">удобство ручного дополнения протокола</span>
+        </div>
+        <div class="metric">
+          <span class="metric-num">∞</span>
+          <span class="metric-label">единый стандарт для всех команд</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-red">
+      <div class="card-title">Перспективы развития</div>
+      <ul class="clean" style="margin-top:2px;">
+        <li style="color:rgba(255,255,255,0.9); font-size:8pt; margin-bottom:2px;">Автоматическая рассылка протоколов по e-mail</li>
+        <li style="color:rgba(255,255,255,0.9); font-size:8pt; margin-bottom:2px;">Интеграция с системами управления задачами</li>
+        <li style="color:rgba(255,255,255,0.9); font-size:8pt; margin-bottom:2px;">Дополнение к Allure Report</li>
+        <li style="color:rgba(255,255,255,0.9); font-size:8pt;">Генерация аналитических дашбордов по версиям</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ФУТЕР -->
+  <footer>
+    <div class="footer-left">
+      <span class="red-text">Объект исследования:</span> процесс проверки сборок ПО и формирования отчётов в среде Tooster<br>
+      <span class="red-text">Предмет исследования:</span> методы и средства автоматизации формирования отчётов на основе результатов тестирования
+    </div>
+    <div class="footer-right">
+      Модуль внедрён в производственный процесс<br>
+      компании <strong>РЕД СОФТ</strong><br>
+      Санкт-Петербург, 2026
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
